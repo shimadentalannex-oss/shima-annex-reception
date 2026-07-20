@@ -1,0 +1,1 @@
+# shima-annex-reception
