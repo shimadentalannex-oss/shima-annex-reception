@@ -1,1 +1,250 @@
-<!doctype html><meta charset='utf-8'><link rel='stylesheet' href='style.css'><h1>SHIMA DENTAL ANNEX</h1><label>患者名</label><input id='name'><label>処置</label><select id='item'></select><div>金額:<span id='price'></span></div><button onclick='preview()'>プレビュー</button><button onclick='window.print()'>印刷</button><div id='receipt'><h2>領収書プレビュー</h2><p><span id='rname'></span> 様</p><p id='ritem'></p><p id='rprice'></p></div><script src='app.js'></script>
+＜!DOCTYPE html＞
+＜html lang=”ja”＞
+＜head＞
+
+＜meta charset=”UTF-8”＞
+＜meta name=”viewport”
+content=”width=device-width, initial-scale=1.0”＞
+
+＜title＞SHIMA DENTAL ANNEX Reception＜/title＞
+
+＜link rel=”stylesheet” href=”style.css”＞
+
+＜/head＞
+
+＜body＞
+
+＜div class=”container”＞
+
+    ＜!-- Header --＞
+
+    ＜header class=”header”＞
+
+        ＜div class=”logo-area”＞
+
+            ＜!-- 後でANNEXロゴ画像を配置 --＞
+            ＜img src=”logo.png”
+                 class=”logo”
+                 alt=”ANNEX Logo”＞
+
+        ＜/div＞
+
+        ＜div class=”title-area”＞
+
+            ＜h1＞SHIMA DENTAL ANNEX＜/h1＞
+
+            ＜p class=”subtitle”＞
+
+                Reception System
+
+            ＜/p＞
+
+        ＜/div＞
+
+    ＜/header＞
+
+
+    ＜!-- 患者情報 --＞
+
+    ＜section class=”patient-card”＞
+
+        ＜h2＞患者情報＜/h2＞
+
+        ＜label＞
+
+            お名前
+
+        ＜/label＞
+
+        ＜input
+
+            id=”patientName”
+
+            type=”text”
+
+            placeholder=”山田 太郎”
+
+            autocomplete=”off”＞
+
+    ＜/section＞
+
+
+    ＜!-- 商品 --＞
+
+    ＜section class=”menu-card”＞
+
+        ＜h2＞処置メニュー＜/h2＞
+
+        ＜div class=”menu-grid”＞
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’オフィスホワイトニング’,33000)”＞
+
+                ＜span class=”menu-title”＞
+
+                    オフィス＜br＞
+                    ホワイトニング
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥33,000
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’ホームホワイトニング’,27500)”＞
+
+                ＜span class=”menu-title”＞
+
+                    ホーム＜br＞
+                    ホワイトニング
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥27,500
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’デュアルホワイトニング’,55000)”＞
+
+                ＜span class=”menu-title”＞
+
+                    デュアル＜br＞
+                    ホワイトニング
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥55,000
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’プロフェッショナルクリーニング’,13200)”＞
+
+                ＜span class=”menu-title”＞
+
+                    プロフェッショナル＜br＞
+                    クリーニング
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥13,200
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’デンタルエステ’,16500)”＞
+
+                ＜span class=”menu-title”＞
+
+                    デンタルエステ
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥16,500
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’ホーム薬液追加’,5500)”＞
+
+                ＜span class=”menu-title”＞
+
+                    ホーム薬液追加
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥5,500
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’ホーム薬液ウィズ差額’,1100)”＞
+
+                ＜span class=”menu-title”＞
+
+                    ホーム薬液＜br＞
+                    ウィズ差額
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥1,100
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’ルシェロホワイト歯磨き粉’,1900)”＞
+
+                ＜span class=”menu-title”＞
+
+                    ルシェロ＜br＞
+                    歯磨き粉
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥1,900
+
+                ＜/span＞
+
+            ＜/button＞
+
+
+            ＜button class=”menu-btn”
+                    onclick=”addItem(’ルシェロホワイト歯ブラシ’,380)”＞
+
+                ＜span class=”menu-title”＞
+
+                    ルシェロ＜br＞
+                    歯ブラシ
+
+                ＜/span＞
+
+                ＜span class=”price”＞
+
+                    ¥380
+
+                ＜/span＞
+
+            ＜/button＞
+
+        ＜/div＞
+
+    ＜/section＞
