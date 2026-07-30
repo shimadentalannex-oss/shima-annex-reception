@@ -248,3 +248,172 @@ content=”width=device-width, initial-scale=1.0”＞
         ＜/div＞
 
     ＜/section＞
+    ＜!-- 会計内容 --＞
+
+    ＜section class=”cart-card”＞
+
+        ＜h2＞会計内容＜/h2＞
+
+        ＜div id=”cartItems”＞
+
+            ＜div class=”empty”＞
+
+                商品を選択してください
+
+            ＜/div＞
+
+        ＜/div＞
+
+        ＜div class=”total-area”＞
+
+            ＜div class=”total-title”＞
+
+                合計金額
+
+            ＜/div＞
+
+            ＜div
+                id=”totalPrice”
+                class=”total-price”＞
+
+                ¥0
+
+            ＜/div＞
+
+        ＜/div＞
+
+    ＜/section＞
+
+
+
+    ＜!-- 支払方法 --＞
+
+    ＜section class=”payment-card”＞
+
+        ＜h2＞お支払い方法＜/h2＞
+
+        ＜div class=”payment-buttons”＞
+
+            ＜button
+                class=”pay-btn active”
+                id=”cardBtn”
+                onclick=”selectPayment(’カード’)”＞
+
+                ???? カード
+
+            ＜/button＞
+
+            ＜button
+                class=”pay-btn”
+                id=”cashBtn”
+                onclick=”selectPayment(’現金’)”＞
+
+                ???? 現金
+
+            ＜/button＞
+
+        ＜/div＞
+
+    ＜/section＞
+
+
+
+    ＜!-- 操作 --＞
+
+    ＜section class=”action-card”＞
+
+        ＜button
+            class=”preview-btn”
+            onclick=”previewReceipt()”＞
+
+            ???? プレビュー
+
+        ＜/button＞
+
+        ＜button
+            class=”print-btn”
+            onclick=”printReceipt()”＞
+
+            ???? 印刷
+
+        ＜/button＞
+
+        ＜button
+            class=”clear-btn”
+            onclick=”clearCart()”＞
+
+            ???? 会計をクリア
+
+        ＜/button＞
+
+    ＜/section＞
+
+
+
+    ＜!-- 領収書 --＞
+
+    ＜section
+        id=”receiptArea”
+        class=”receipt”＞
+
+        ＜div class=”receipt-header”＞
+
+            ＜img
+                src=”logo.png”
+                class=”receipt-logo”＞
+
+            ＜h2＞
+
+                領　収　書
+
+            ＜/h2＞
+
+        ＜/div＞
+
+        ＜div
+            id=”receiptPatient”
+            class=”receipt-patient”＞
+
+            山田 太郎 様
+
+        ＜/div＞
+
+        ＜div
+            id=”receiptItems”＞
+
+        ＜/div＞
+
+        ＜div
+            id=”receiptTotal”
+            class=”receipt-total”＞
+
+            ¥0
+
+        ＜/div＞
+
+        ＜div class=”receipt-date”＞
+
+            発行日：
+            ＜span id=”today”＞＜/span＞
+
+        ＜/div＞
+
+        ＜div class=”stamp”＞
+
+            ＜img
+                src=”inkan.png”
+                alt=”印鑑”＞
+
+        ＜/div＞
+
+    ＜/section＞
+
+
+
+＜/div＞
+
+＜script src=”app.js”＞＜/script＞
+
+＜/body＞
+
+＜/html＞
