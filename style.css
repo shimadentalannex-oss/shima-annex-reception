@@ -1,8 +1,7 @@
-/* ===========================
+/* ==========================================
    SHIMA DENTAL ANNEX
-   Reception System
-   style.css Part1
-=========================== */
+   Reception System v1.0
+========================================== */
 
 *{
     margin:0;
@@ -12,22 +11,22 @@
 
 body{
 
-    background:#f7f5f2;
-
-    font-family:
-    ”Hiragino Sans”,
-    ”Yu Gothic”,
-    sans-serif;
+    background:#f5f2ed;
 
     color:#444;
 
-    padding:25px;
+    font-family:
+    "Hiragino Sans",
+    "Yu Gothic",
+    sans-serif;
+
+    padding:30px;
 
 }
 
 .container{
 
-    max-width:1100px;
+    max-width:1200px;
 
     margin:auto;
 
@@ -35,9 +34,9 @@ body{
 
 
 
-/* ===========================
-   HEADER
-=========================== */
+/* ==========================
+   Header
+========================== */
 
 .header{
 
@@ -47,19 +46,19 @@ body{
 
     gap:25px;
 
-    background:#ffffff;
+    background:white;
+
+    border-radius:20px;
 
     padding:25px;
 
-    border-radius:18px;
-
-    margin-bottom:25px;
+    margin-bottom:30px;
 
     box-shadow:
 
-    0 8px 20px
+    0 8px 24px
 
-    rgba(0,0,0,.06);
+    rgba(0,0,0,.08);
 
 }
 
@@ -71,19 +70,17 @@ body{
 
 }
 
-.title-area h1{
+.header-text h1{
 
     font-size:34px;
 
-    color:#4d4d4d;
-
-    letter-spacing:1px;
+    color:#555;
 
 }
 
-.subtitle{
+.header-text p{
 
-    color:#9a9a9a;
+    color:#999;
 
     margin-top:8px;
 
@@ -91,23 +88,19 @@ body{
 
 
 
-/* ===========================
+/* ==========================
    共通カード
-=========================== */
+========================== */
 
-.patient-card,
-.menu-card,
-.cart-card,
-.payment-card,
-.action-card{
+.card{
 
-    background:#ffffff;
+    background:white;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    padding:24px;
+    padding:25px;
 
-    margin-bottom:22px;
+    margin-bottom:25px;
 
     box-shadow:
 
@@ -117,35 +110,31 @@ body{
 
 }
 
-.patient-card h2,
-.menu-card h2,
-.cart-card h2,
-.payment-card h2,
-.action-card h2{
+.card h2{
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 
-    font-size:24px;
+    color:#666;
 
-    color:#555;
+    font-size:26px;
 
 }
 
 
 
-/* ===========================
+/* ==========================
    患者名
-=========================== */
+========================== */
 
 label{
 
     display:block;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
     font-size:18px;
 
-    color:#666;
+    color:#777;
 
 }
 
@@ -155,33 +144,27 @@ label{
 
     padding:18px;
 
-    font-size:30px;
-
     border-radius:14px;
 
-    border:
+    border:1px solid #ddd;
 
-    1px solid #dddddd;
+    font-size:32px;
 
     outline:none;
-
-    background:#fafafa;
 
 }
 
 #patientName:focus{
 
-    border-color:#bca58c;
-
-    background:white;
+    border-color:#b89d84;
 
 }
 
 
 
-/* ===========================
-   商品ボタン
-=========================== */
+/* ==========================
+   商品一覧
+========================== */
 
 .menu-grid{
 
@@ -189,395 +172,60 @@ label{
 
     grid-template-columns:
 
-    repeat(3,1fr);
+    repeat(auto-fill,minmax(260px,1fr));
 
     gap:18px;
 
 }
 
-.menu-btn{
+.menu-button{
 
     border:none;
-
-    background:#ede5dc;
 
     border-radius:18px;
 
-    padding:20px;
+    background:#efe7de;
 
     cursor:pointer;
 
-    transition:.2s;
+    padding:22px;
 
-    min-height:120px;
+    transition:.25s;
 
 }
 
-.menu-btn:hover{
+.menu-button:hover{
 
     transform:translateY(-4px);
 
-    background:#e4d8cc;
+    background:#e3d5c8;
 
 }
 
-.menu-title{
+.menu-name{
 
     display:block;
 
     font-size:18px;
 
     font-weight:bold;
-
-    line-height:1.5;
 
     color:#555;
 
+    line-height:1.5;
+
 }
 
-.price{
+.menu-price{
 
     display:block;
 
-    margin-top:15px;
-
-    font-size:22px;
-
-    color:#9d7d62;
-
-    font-weight:bold;
-
-}
-/* ===========================
-   会計一覧
-=========================== */
-
-#cartItems{
-
-    min-height:80px;
-
-}
-
-.empty{
-
-    color:#999;
-
-    font-size:18px;
-
-    text-align:center;
-
-    padding:25px;
-
-}
-
-.cart-item{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#f8f8f8;
-
-    border-radius:14px;
-
-    padding:16px 20px;
-
-    margin-bottom:12px;
-
-}
-
-.cart-name{
-
-    font-size:20px;
-
-    font-weight:600;
-
-    color:#444;
-
-}
-
-.cart-price{
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    color:#9d7d62;
-
-}
-
-.delete-btn{
-
-    margin-left:15px;
-
-    border:none;
-
-    background:#d96c6c;
-
-    color:white;
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:50%;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-}
-
-
-
-/* ===========================
-   合計金額
-=========================== */
-
-.total-area{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-top:20px;
-
-    padding-top:20px;
-
-    border-top:2px dashed #ddd;
-
-}
-
-.total-title{
+    margin-top:18px;
 
     font-size:24px;
 
-    font-weight:bold;
-
-}
-
-.total-price{
-
-    font-size:40px;
+    color:#8f6e52;
 
     font-weight:bold;
-
-    color:#8d6848;
-
-}
-
-
-
-/* ===========================
-   支払方法
-=========================== */
-
-.payment-buttons{
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-.pay-btn{
-
-    flex:1;
-
-    border:none;
-
-    border-radius:16px;
-
-    padding:22px;
-
-    font-size:24px;
-
-    cursor:pointer;
-
-    background:#ececec;
-
-    transition:.2s;
-
-}
-
-.pay-btn.active{
-
-    background:#b89d84;
-
-    color:white;
-
-}
-
-
-
-/* ===========================
-   操作ボタン
-=========================== */
-
-.action-card{
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-.preview-btn,
-.print-btn,
-.clear-btn{
-
-    flex:1;
-
-    border:none;
-
-    border-radius:16px;
-
-    padding:22px;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-    color:white;
-
-}
-
-.preview-btn{
-
-    background:#607d8b;
-
-}
-
-.print-btn{
-
-    background:#8d6848;
-
-}
-
-.clear-btn{
-
-    background:#b74c4c;
-
-}
-
-
-
-/* ===========================
-   領収書
-=========================== */
-
-.receipt{
-
-    display:none;
-
-    background:white;
-
-    width:148mm;
-
-    min-height:210mm;
-
-    margin:auto;
-
-    padding:20mm;
-
-}
-
-.receipt-header{
-
-    text-align:center;
-
-}
-
-.receipt-logo{
-
-    width:120px;
-
-    margin-bottom:15px;
-
-}
-
-.receipt h2{
-
-    font-size:34px;
-
-    margin-bottom:35px;
-
-}
-
-.receipt-patient{
-
-    font-size:30px;
-
-    font-weight:bold;
-
-    margin-bottom:30px;
-
-}
-
-.receipt-total{
-
-    margin-top:30px;
-
-    text-align:right;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-}
-
-.receipt-date{
-
-    margin-top:50px;
-
-    font-size:18px;
-
-}
-
-.stamp{
-
-    text-align:right;
-
-    margin-top:60px;
-
-}
-
-.stamp img{
-
-    width:90px;
-
-}
-
-
-
-/* ===========================
-   印刷専用
-=========================== */
-
-@media print{
-
-body{
-
-    background:white;
-
-    padding:0;
-
-}
-
-.container＞*{
-
-    display:none;
-
-}
-
-#receiptArea{
-
-    display:block;
-
-}
 
 }
