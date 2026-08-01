@@ -1,419 +1,198 @@
-＜!DOCTYPE html＞
-＜html lang=”ja”＞
-＜head＞
+<!DOCTYPE html>
+<html lang="ja">
 
-＜meta charset=”UTF-8”＞
-＜meta name=”viewport”
-content=”width=device-width, initial-scale=1.0”＞
+<head>
 
-＜title＞SHIMA DENTAL ANNEX Reception＜/title＞
+<meta charset="UTF-8">
 
-＜link rel=”stylesheet” href=”style.css”＞
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-＜/head＞
+<title>
+SHIMA DENTAL ANNEX
+受付システム
+</title>
 
-＜body＞
+<link
+rel="stylesheet"
+href="style.css">
 
-＜div class=”container”＞
+</head>
 
-    ＜!-- Header --＞
+<body>
 
-    ＜header class=”header”＞
+<div class="container">
 
-        ＜div class=”logo-area”＞
+    <!-- Header -->
 
-            ＜!-- 後でANNEXロゴ画像を配置 --＞
-            ＜img src=”logo.png”
-                 class=”logo”
-                 alt=”ANNEX Logo”＞
+    <header class="header">
 
-        ＜/div＞
+        <img
+            src="logo.png"
+            class="logo"
+            alt="ANNEX Logo">
 
-        ＜div class=”title-area”＞
+        <div class="header-text">
 
-            ＜h1＞SHIMA DENTAL ANNEX＜/h1＞
+            <h1>
+                SHIMA DENTAL ANNEX
+            </h1>
 
-            ＜p class=”subtitle”＞
-
+            <p>
                 Reception System
+            </p>
 
-            ＜/p＞
+        </div>
 
-        ＜/div＞
-
-    ＜/header＞
+    </header>
 
 
-    ＜!-- 患者情報 --＞
 
-    ＜section class=”patient-card”＞
+    <!-- 患者情報 -->
 
-        ＜h2＞患者情報＜/h2＞
+    <section class="card">
 
-        ＜label＞
+        <h2>
+
+            患者情報
+
+        </h2>
+
+        <label>
 
             お名前
 
-        ＜/label＞
+        </label>
 
-        ＜input
+        <input
 
-            id=”patientName”
+            id="patientName"
 
-            type=”text”
+            type="text"
 
-            placeholder=”山田 太郎”
+            placeholder="患者様のお名前を入力">
 
-            autocomplete=”off”＞
-
-    ＜/section＞
+    </section>
 
 
-    ＜!-- 商品 --＞
 
-    ＜section class=”menu-card”＞
+    <!-- メニュー -->
 
-        ＜h2＞処置メニュー＜/h2＞
+    <section class="card">
 
-        ＜div class=”menu-grid”＞
+        <h2>
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’オフィスホワイトニング’,33000)”＞
+            処置メニュー
 
-                ＜span class=”menu-title”＞
+        </h2>
 
-                    オフィス＜br＞
-                    ホワイトニング
+        <div class="menu-grid">
 
-                ＜/span＞
+            <button
 
-                ＜span class=”price”＞
+                class="menu-button"
+
+                onclick="addItem('オフィスホワイトニング',33000)">
+
+                <span class="menu-name">
+
+                    オフィスホワイトニング
+
+                </span>
+
+                <span class="menu-price">
 
                     ¥33,000
 
-                ＜/span＞
+                </span>
 
-            ＜/button＞
+            </button>
 
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’ホームホワイトニング’,27500)”＞
 
-                ＜span class=”menu-title”＞
+            <button
 
-                    ホーム＜br＞
-                    ホワイトニング
+                class="menu-button"
 
-                ＜/span＞
+                onclick="addItem('ホームホワイトニング',27500)">
 
-                ＜span class=”price”＞
+                <span class="menu-name">
+
+                    ホームホワイトニング
+
+                </span>
+
+                <span class="menu-price">
 
                     ¥27,500
 
-                ＜/span＞
+                </span>
 
-            ＜/button＞
-
-
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’デュアルホワイトニング’,55000)”＞
-
-                ＜span class=”menu-title”＞
-
-                    デュアル＜br＞
-                    ホワイトニング
-
-                ＜/span＞
-
-                ＜span class=”price”＞
-
-                    ¥55,000
-
-                ＜/span＞
-
-            ＜/button＞
+            </button>
 
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’プロフェッショナルクリーニング’,13200)”＞
 
-                ＜span class=”menu-title”＞
+            <button
 
-                    プロフェッショナル＜br＞
-                    クリーニング
+                class="menu-button"
 
-                ＜/span＞
+                onclick="addItem('ホーム薬液追加',5500)">
 
-                ＜span class=”price”＞
-
-                    ¥13,200
-
-                ＜/span＞
-
-            ＜/button＞
-
-
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’デンタルエステ’,16500)”＞
-
-                ＜span class=”menu-title”＞
-
-                    デンタルエステ
-
-                ＜/span＞
-
-                ＜span class=”price”＞
-
-                    ¥16,500
-
-                ＜/span＞
-
-            ＜/button＞
-
-
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’ホーム薬液追加’,5500)”＞
-
-                ＜span class=”menu-title”＞
+                <span class="menu-name">
 
                     ホーム薬液追加
 
-                ＜/span＞
+                </span>
 
-                ＜span class=”price”＞
+                <span class="menu-price">
 
                     ¥5,500
 
-                ＜/span＞
+                </span>
 
-            ＜/button＞
+            </button>
 
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’ホーム薬液ウィズ差額’,1100)”＞
 
-                ＜span class=”menu-title”＞
+            <button
 
-                    ホーム薬液＜br＞
-                    ウィズ差額
+                class="menu-button"
 
-                ＜/span＞
+                onclick="addItem('ホーム薬液ウィズ差額',1100)">
 
-                ＜span class=”price”＞
+                <span class="menu-name">
+
+                    ホーム薬液ウィズ差額
+
+                </span>
+
+                <span class="menu-price">
 
                     ¥1,100
 
-                ＜/span＞
+                </span>
 
-            ＜/button＞
+            </button>
 
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’ルシェロホワイト歯磨き粉’,1900)”＞
 
-                ＜span class=”menu-title”＞
+            <button
 
-                    ルシェロ＜br＞
-                    歯磨き粉
+                class="menu-button"
 
-                ＜/span＞
+                onclick="addItem('デュアルホワイトニング',55000)">
 
-                ＜span class=”price”＞
+                <span class="menu-name">
 
-                    ¥1,900
+                    デュアルホワイトニング
 
-                ＜/span＞
+                </span>
 
-            ＜/button＞
+                <span class="menu-price">
 
+                    ¥55,000
 
-            ＜button class=”menu-btn”
-                    onclick=”addItem(’ルシェロホワイト歯ブラシ’,380)”＞
+                </span>
 
-                ＜span class=”menu-title”＞
-
-                    ルシェロ＜br＞
-                    歯ブラシ
-
-                ＜/span＞
-
-                ＜span class=”price”＞
-
-                    ¥380
-
-                ＜/span＞
-
-            ＜/button＞
-
-        ＜/div＞
-
-    ＜/section＞
-    ＜!-- 会計内容 --＞
-
-    ＜section class=”cart-card”＞
-
-        ＜h2＞会計内容＜/h2＞
-
-        ＜div id=”cartItems”＞
-
-            ＜div class=”empty”＞
-
-                商品を選択してください
-
-            ＜/div＞
-
-        ＜/div＞
-
-        ＜div class=”total-area”＞
-
-            ＜div class=”total-title”＞
-
-                合計金額
-
-            ＜/div＞
-
-            ＜div
-                id=”totalPrice”
-                class=”total-price”＞
-
-                ¥0
-
-            ＜/div＞
-
-        ＜/div＞
-
-    ＜/section＞
-
-
-
-    ＜!-- 支払方法 --＞
-
-    ＜section class=”payment-card”＞
-
-        ＜h2＞お支払い方法＜/h2＞
-
-        ＜div class=”payment-buttons”＞
-
-            ＜button
-                class=”pay-btn active”
-                id=”cardBtn”
-                onclick=”selectPayment(’カード’)”＞
-
-                ???? カード
-
-            ＜/button＞
-
-            ＜button
-                class=”pay-btn”
-                id=”cashBtn”
-                onclick=”selectPayment(’現金’)”＞
-
-                ???? 現金
-
-            ＜/button＞
-
-        ＜/div＞
-
-    ＜/section＞
-
-
-
-    ＜!-- 操作 --＞
-
-    ＜section class=”action-card”＞
-
-        ＜button
-            class=”preview-btn”
-            onclick=”previewReceipt()”＞
-
-            ???? プレビュー
-
-        ＜/button＞
-
-        ＜button
-            class=”print-btn”
-            onclick=”printReceipt()”＞
-
-            ???? 印刷
-
-        ＜/button＞
-
-        ＜button
-            class=”clear-btn”
-            onclick=”clearCart()”＞
-
-            ???? 会計をクリア
-
-        ＜/button＞
-
-    ＜/section＞
-
-
-
-    ＜!-- 領収書 --＞
-
-    ＜section
-        id=”receiptArea”
-        class=”receipt”＞
-
-        ＜div class=”receipt-header”＞
-
-            ＜img
-                src=”logo.png”
-                class=”receipt-logo”＞
-
-            ＜h2＞
-
-                領　収　書
-
-            ＜/h2＞
-
-        ＜/div＞
-
-        ＜div
-            id=”receiptPatient”
-            class=”receipt-patient”＞
-
-            山田 太郎 様
-
-        ＜/div＞
-
-        ＜div
-            id=”receiptItems”＞
-
-        ＜/div＞
-
-        ＜div
-            id=”receiptTotal”
-            class=”receipt-total”＞
-
-            ¥0
-
-        ＜/div＞
-
-        ＜div class=”receipt-date”＞
-
-            発行日：
-            ＜span id=”today”＞＜/span＞
-
-        ＜/div＞
-
-        ＜div class=”stamp”＞
-
-            ＜img
-                src=”inkan.png”
-                alt=”印鑑”＞
-
-        ＜/div＞
-
-    ＜/section＞
-
-
-
-＜/div＞
-
-＜script src=”app.js”＞＜/script＞
-
-＜/body＞
-
-＜/html＞
+            </button>
+            
