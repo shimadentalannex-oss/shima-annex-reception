@@ -194,5 +194,175 @@ href="style.css">
 
                 </span>
 
+            </button>            <button
+                class="menu-button"
+                onclick="addItem('プロフェッショナルクリーニング',13200)">
+
+                <span class="menu-name">
+                    プロフェッショナルクリーニング
+                </span>
+
+                <span class="menu-price">
+                    ¥13,200
+                </span>
+
             </button>
+
+            <button
+                class="menu-button"
+                onclick="addItem('デンタルエステ',16500)">
+
+                <span class="menu-name">
+                    デンタルエステ
+                </span>
+
+                <span class="menu-price">
+                    ¥16,500
+                </span>
+
+            </button>
+
+            <button
+                class="menu-button"
+                onclick="addItem('ルシェロホワイト歯磨き粉',1900)">
+
+                <span class="menu-name">
+                    ルシェロホワイト歯磨き粉
+                </span>
+
+                <span class="menu-price">
+                    ¥1,900
+                </span>
+
+            </button>
+
+            <button
+                class="menu-button"
+                onclick="addItem('ルシェロホワイト歯ブラシ',380)">
+
+                <span class="menu-name">
+                    ルシェロホワイト歯ブラシ
+                </span>
+
+                <span class="menu-price">
+                    ¥380
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 会計内容 -->
+
+    <section class="card">
+
+        <h2>
+
+            会計内容
+
+        </h2>
+
+        <div id="cartItems">
+
+            <div class="empty">
+
+                商品を選択してください
+
+            </div>
+
+        </div>
+
+        <div class="total-row">
+
+            <span>
+
+                合計金額
+
+            </span>
+
+            <span id="totalPrice">
+
+                ¥0
+
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 支払方法 -->
+
+    <section class="card">
+
+        <h2>
+
+            お支払い方法
+
+        </h2>
+
+        <div class="payment-area">
+
+            <button
+                id="cardBtn"
+                class="payment-button active"
+                onclick="selectPayment('カード')">
+
+                💳 カード
+
+            </button>
+
+            <button
+                id="cashBtn"
+                class="payment-button"
+                onclick="selectPayment('現金')">
+
+                💴 現金
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 操作 -->
+
+    <section class="card">
+
+        <div class="button-area">
+
+            <button
+                class="preview-button"
+                onclick="previewReceipt()">
+
+                👀 プレビュー
+
+            </button>
+
+            <button
+                class="print-button"
+                onclick="printReceipt()">
+
+                🖨 印刷
+
+            </button>
+
+            <button
+                class="clear-button"
+                onclick="clearCart()">
+
+                🗑 クリア
+
+            </button>
+
+        </div>
+
+    </section>
             
