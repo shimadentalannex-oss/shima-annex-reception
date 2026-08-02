@@ -131,4 +131,93 @@ function updateCart() {
     document.getElementById("receiptTotal").textContent =
         "¥" + total.toLocaleString();
 
+}/* ==========================================
+   支払方法
+========================================== */
+
+function selectPayment(method) {
+
+    paymentMethod = method;
+
+    document.getElementById("receiptPayment").textContent = method;
+
+    document.getElementById("cardBtn").classList.remove("active");
+    document.getElementById("cashBtn").classList.remove("active");
+
+    if (method === "カード") {
+        document.getElementById("cardBtn").classList.add("active");
+    } else {
+        document.getElementById("cashBtn").classList.add("active");
+    }
+
 }
+
+/* ==========================================
+   領収書プレビュー更新
+========================================== */
+
+function previewReceipt() {
+
+    const patient =
+        document.getElementById("patientName").value.trim();
+
+    document.getElementById("receiptPatient").textContent =
+        patient ? patient + " 様" : "患者名";
+
+    const today = new Date();
+
+    document.getElementById("today").textContent =
+        today.getFullYear() + "年" +
+        (today.getMonth() + 1) + "月" +
+        today.getDate() + "日";
+
+    document.getElementById("receiptPayment").textContent =
+        paymentMethod;
+
+}
+
+/* ==========================================
+   印刷
+========================================== */
+
+function printReceipt() {
+
+    previewReceipt();
+
+    window.print();
+
+}
+
+/* ==========================================
+   会計クリア
+========================================== */
+
+function clearCart() {
+
+    if (!confirm("会計内容をクリアしますか？")) {
+        return;
+    }
+
+    cart = [];
+
+    document.getElementById("patientName").value = "";
+
+    updateCart();
+
+    previewReceipt();
+
+}
+
+/* ==========================================
+   初期表示
+========================================== */
+
+window.onload = function () {
+
+    updateCart();
+
+    previewReceipt();
+
+    selectPayment("カード");
+
+};
