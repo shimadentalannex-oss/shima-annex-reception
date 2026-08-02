@@ -228,4 +228,246 @@ label{
 
     font-weight:bold;
 
+}/* ==========================================
+   会計一覧
+========================================== */
+
+#cartItems{
+
+    min-height:80px;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:18px;
+
+    padding:25px;
+
+}
+
+.cart-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    background:#faf8f5;
+
+    margin-bottom:12px;
+
+    border:1px solid #ece6df;
+
+}
+
+.cart-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.cart-name{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.cart-price{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#8f6e52;
+
+}
+
+.delete-button{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#d86f6f;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+
+
+/* ==========================================
+   合計金額
+========================================== */
+
+.total-row{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-top:20px;
+
+    border-top:2px dashed #d9d1c8;
+
+}
+
+.total-row span:first-child{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+#totalPrice{
+
+    font-size:38px;
+
+    font-weight:bold;
+
+    color:#8f6e52;
+
+}
+
+
+
+/* ==========================================
+   支払方法
+========================================== */
+
+.payment-area{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.payment-button{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    background:#ece6df;
+
+    transition:.2s;
+
+}
+
+.payment-button.active{
+
+    background:#b89d84;
+
+    color:white;
+
+}
+
+
+
+/* ==========================================
+   操作ボタン
+========================================== */
+
+.button-area{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.preview-button,
+.print-button,
+.clear-button{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    color:white;
+
+    transition:.2s;
+
+}
+
+.preview-button{
+
+    background:#607d8b;
+
+}
+
+.preview-button:hover{
+
+    opacity:.9;
+
+}
+
+.print-button{
+
+    background:#8f6e52;
+
+}
+
+.print-button:hover{
+
+    opacity:.9;
+
+}
+
+.clear-button{
+
+    background:#c86d6d;
+
+}
+
+.clear-button:hover{
+
+    opacity:.9;
+
 }
