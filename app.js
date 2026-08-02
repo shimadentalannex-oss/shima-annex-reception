@@ -1,337 +1,134 @@
 /* ==========================================
    SHIMA DENTAL ANNEX
-   Reception System
-   app.js Part1
+   Reception System v1.0
 ========================================== */
 
+// 会計データ
 let cart = [];
 
-let paymentMethod = ”カード”;
-
-
+// 支払方法
+let paymentMethod = "カード";
 
 /* ==========================================
    商品追加
 ========================================== */
 
-function addItem(name, price){
+function addItem(name, price) {
 
     cart.push({
-
         name: name,
-
         price: price
-
     });
 
     updateCart();
 
 }
-
-
 
 /* ==========================================
    商品削除
 ========================================== */
 
-function removeItem(index){
+function removeItem(index) {
 
-    cart.splice(index,1);
+    cart.splice(index, 1);
 
     updateCart();
 
 }
 
-
-
 /* ==========================================
-   カート更新
+   会計一覧更新
 ========================================== */
 
-function updateCart(){
+function updateCart() {
 
-    const cartArea =
-        document.getElementById(”cartItems”);
+    const cartArea = document.getElementById("cartItems");
 
-    const totalArea =
-        document.getElementById(”totalPrice”);
+    const totalArea = document.getElementById("totalPrice");
 
-    cartArea.innerHTML = ””;
+    const receiptArea = document.getElementById("receiptItems");
 
-    if(cart.length===0){
+    cartArea.innerHTML = "";
 
-        cartArea.innerHTML=
+    receiptArea.innerHTML = "";
 
-        ’＜div class=”empty”＞商品を選択してください＜/div＞’;
+    let total = 0;
 
-        totalArea.innerHTML=”¥0”;
+    if (cart.length === 0) {
+
+        cartArea.innerHTML =
+            '<div class="empty">商品を選択してください</div>';
+
+        totalArea.textContent = "¥0";
+
+        document.getElementById("receiptTotal").textContent = "¥0";
 
         return;
 
     }
 
-    let total=0;
-
-    cart.forEach(function(item,index){
+    cart.forEach((item, index) => {
 
         total += item.price;
 
-        cartArea.innerHTML +=
+        cartArea.innerHTML += `
 
-        `
+        <div class="cart-item">
 
-        ＜div class=”cart-item”＞
+            <div class="cart-left">
 
-            ＜div＞
-
-                ＜div class=”cart-name”＞
+                <div class="cart-name">
 
                     ${item.name}
 
-                ＜/div＞
+                </div>
 
-            ＜/div＞
-
-            ＜div＞
-
-                ＜span class=”cart-price”＞
+                <div class="cart-price">
 
                     ¥${item.price.toLocaleString()}
 
-                ＜/span＞
+                </div>
 
-                ＜button
+            </div>
 
-                    class=”delete-btn”
+            <button
+                class="delete-button"
+                onclick="removeItem(${index})">
 
-                    onclick=”removeItem(${index})”＞
+                ×
 
-                    ×
+            </button>
 
-                ＜/button＞
+        </div>
 
-            ＜/div＞
+        `;
 
-        ＜/div＞
+        receiptArea.innerHTML += `
+
+        <tr>
+
+            <td>
+
+                ${item.name}
+
+            </td>
+
+            <td style="text-align:right">
+
+                ¥${item.price.toLocaleString()}
+
+            </td>
+
+        </tr>
 
         `;
 
     });
 
-    totalArea.innerHTML=
+    totalArea.textContent =
+        "¥" + total.toLocaleString();
 
-    ”¥”+total.toLocaleString();
-
-}
-
-
-
-/* ==========================================
-   支払方法
-========================================== */
-
-function selectPayment(type){
-
-    paymentMethod = type;
-
-    document
-
-    .getElementById(”cardBtn”)
-
-    .classList.remove(”active”);
-
-    document
-
-    .getElementById(”cashBtn”)
-
-    .classList.remove(”active”);
-
-    if(type===”カード”){
-
-        document
-
-        .getElementById(”cardBtn”)
-
-        .classList.add(”active”);
-
-    }
-
-    else{
-
-        document
-
-        .getElementById(”cashBtn”)
-
-        .classList.add(”active”);
-
-    }
+    document.getElementById("receiptTotal").textContent =
+        "¥" + total.toLocaleString();
 
 }
-
-
-
-/* ==========================================
-   会計クリア
-========================================== */
-
-function clearCart(){
-
-    if(confirm(”会計内容をクリアしますか？”)){
-
-        cart=[];
-
-        updateCart();
-
-    }
-
-}
-/* ==========================================
-   プレビュー
-========================================== */
-
-function previewReceipt(){
-
-    const patient =
-        document.getElementById(”patientName”).value.trim();
-
-    document.getElementById(”receiptPatient”).innerHTML =
-        patient ? patient + ” 様” : ”患者名未入力”;
-
-    const receiptItems =
-        document.getElementById(”receiptItems”);
-
-    receiptItems.innerHTML = ””;
-
-    let total = 0;
-
-    cart.forEach(function(item){
-
-        total += item.price;
-
-        receiptItems.innerHTML += `
-
-        ＜div style=”
-            display:flex;
-            justify-content:space-between;
-            margin-bottom:12px;
-            font-size:20px;
-        ”＞
-
-            ＜span＞${item.name}＜/span＞
-
-            ＜span＞¥${item.price.toLocaleString()}＜/span＞
-
-        ＜/div＞
-
-        `;
-
-    });
-
-    document.getElementById(”receiptTotal”).innerHTML =
-        ”¥” + total.toLocaleString();
-
-    const today = new Date();
-
-    document.getElementById(”today”).innerHTML =
-
-        today.getFullYear() + ”年” +
-
-        (today.getMonth()+1) + ”月” +
-
-        today.getDate() + ”日”;
-
-}
-
-
-
-/* ==========================================
-   印刷
-========================================== */
-
-function printReceipt(){
-
-    previewReceipt();
-
-    window.print();
-
-}
-
-
-
-/* ==========================================
-   売上保存（簡易版）
-========================================== */
-
-function saveSales(){
-
-    let history =
-
-        JSON.parse(
-
-            localStorage.getItem(”annexSales”)
-
-            || ”[]”
-
-        );
-
-    let total = 0;
-
-    cart.forEach(function(item){
-
-        total += item.price;
-
-    });
-
-    history.push({
-
-        patient:
-
-            document.getElementById(”patientName”).value,
-
-        items: cart,
-
-        payment: paymentMethod,
-
-        total: total,
-
-        date: new Date().toLocaleString()
-
-    });
-
-    localStorage.setItem(
-
-        ”annexSales”,
-
-        JSON.stringify(history)
-
-    );
-
-}
-
-
-
-/* ==========================================
-   印刷時に自動保存
-========================================== */
-
-const originalPrint = window.print;
-
-window.print = function(){
-
-    saveSales();
-
-    originalPrint();
-
-};
-
-
-
-/* ==========================================
-   初期表示
-========================================== */
-
-updateCart();
-
-selectPayment(”カード”);
-
-previewReceipt();
