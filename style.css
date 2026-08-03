@@ -531,5 +531,15 @@ label{
         }
 
 }
+@media print {
 
+.container{
+
+height:auto !important;
+
+min-height:0 !important;
+
+}
+
+}
         
