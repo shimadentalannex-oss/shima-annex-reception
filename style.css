@@ -471,3 +471,29 @@ label{
     opacity:.9;
 
 }
+/* ==========================
+   印刷設定
+========================== */
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #receiptArea,
+    #receiptArea * {
+        visibility: visible;
+    }
+
+    #receiptArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: white;
+    }
+
+}
