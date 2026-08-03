@@ -220,4 +220,65 @@ window.onload = function () {
 
     selectPayment("カード");
 
-};
+};/* ==========================================
+   売上保存
+========================================== */
+
+function saveSale() {
+
+    if (cart.length === 0) return;
+
+    const patient =
+        document.getElementById("patientName").value || "";
+
+    const sale = {
+
+        datetime: new Date().toISOString(),
+
+        patient: patient,
+
+        payment: paymentMethod,
+
+        items: [...cart],
+
+        total: cart.reduce((sum, item) => sum + item.price, 0)
+
+    };
+
+    const history =
+        JSON.parse(localStorage.getItem("annexSales") || "[]");
+
+    history.push(sale);
+
+    localStorage.setItem(
+        "annexSales",
+        JSON.stringify(history)
+    );
+
+}
+
+/* ==========================================
+   売上一覧取得
+========================================== */
+
+function getSales() {
+
+    return JSON.parse(
+        localStorage.getItem("annexSales") || "[]"
+    );
+
+}
+
+/* ==========================================
+   会計完了
+========================================== */
+
+function finishPayment() {
+
+    saveSale();
+
+    clearCart();
+
+    alert("会計を保存しました。");
+
+}
