@@ -156,8 +156,6 @@ function selectPayment(method) {
    領収書プレビュー更新
 ========================================== */
 
-function previewReceipt() {
-
     const patient =
         document.getElementById("patientName").value.trim();
 
@@ -182,7 +180,6 @@ function previewReceipt() {
 
 function printReceipt() {
 
-    previewReceipt();
 
     window.print();
 
@@ -204,7 +201,6 @@ function clearCart() {
 
     updateCart();
 
-    previewReceipt();
 
 }
 
@@ -216,7 +212,6 @@ window.onload = function () {
 
     updateCart();
 
-    previewReceipt();
 
     selectPayment("カード");
 
