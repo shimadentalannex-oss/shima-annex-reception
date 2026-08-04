@@ -130,19 +130,21 @@ function updateCart() {
 
     document.getElementById("receiptTotal").textContent =
         "¥" + total.toLocaleString();
-        // 領収書へ患者名を反映
-const patientName = document.getElementById("patientName").value.trim();
+        const patient =
+    document.getElementById("patientName").value;
 
 document.getElementById("receiptPatient").textContent =
-    patientName ? patientName + " 様" : "患者名";
+    patient ? patient + " 様" : "患者名";
 
-// 日付
 const today = new Date();
 
 document.getElementById("today").textContent =
     today.getFullYear() + "年" +
     (today.getMonth() + 1) + "月" +
     today.getDate() + "日";
+
+document.getElementById("receiptPayment").textContent =
+    paymentMethod;
 
 // 支払方法
 document.getElementById("receiptPayment").textContent =
