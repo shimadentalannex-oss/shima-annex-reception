@@ -221,9 +221,14 @@ function clearCart() {
 window.onload = function () {
 
     updateCart();
-
-
+    
     selectPayment("カード");
+    
+    document.getElementById("patientName")
+
+        .addEventListener("input", updateCart);
+
+};
 
 };/* ==========================================
    売上保存
