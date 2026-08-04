@@ -153,28 +153,6 @@ function selectPayment(method) {
 }
 
 /* ==========================================
-   領収書プレビュー更新
-========================================== */
-
-    const patient =
-        document.getElementById("patientName").value.trim();
-
-    document.getElementById("receiptPatient").textContent =
-        patient ? patient + " 様" : "患者名";
-
-    const today = new Date();
-
-    document.getElementById("today").textContent =
-        today.getFullYear() + "年" +
-        (today.getMonth() + 1) + "月" +
-        today.getDate() + "日";
-
-    document.getElementById("receiptPayment").textContent =
-        paymentMethod;
-
-}
-
-/* ==========================================
    印刷
 ========================================== */
 
