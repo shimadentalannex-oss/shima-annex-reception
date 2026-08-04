@@ -474,39 +474,76 @@ label{
 /* ==========================================
    印刷設定（A5領収書専用）
 ========================================== */
+/* ==========================================
+   印刷（A5領収書のみ）
+========================================== */
+
 @media print {
 
-    @page{
-        size:A5 portrait;
-        margin:8mm;
+    @page {
+        size: A5 portrait;
+        margin: 6mm;
     }
 
-    body{
-        margin:0;
-        background:#fff;
+    html,
+    body {
+
+        margin: 0;
+        padding: 0;
+
+        background: #fff;
+
     }
 
-    /* 受付画面だけ消す */
-    .container > *:not(#receiptArea){
-        display:none !important;
+    /* 領収書以外を非表示 */
+
+    .header,
+    .card,
+    .button-area,
+    .payment-area {
+
+        display: none !important;
+
     }
 
     /* 領収書だけ表示 */
-    #receiptArea{
 
-        display:block !important;
+    #receiptArea {
 
-        width:138mm;
+        display: block !important;
 
-        margin:0 auto;
+        width: 136mm;
 
-        padding:0;
+        min-height: auto;
 
-        box-shadow:none;
+        margin: 0 auto;
 
-        border:none;
+        padding: 8mm;
 
-        page-break-after:avoid;
+        background: white;
+
+        box-shadow: none;
+
+        border: none;
+
+    }
+
+    /* テーブル */
+
+    .receipt-table {
+
+        width: 100%;
+
+        border-collapse: collapse;
+
+    }
+
+    .receipt-table th,
+    .receipt-table td {
+
+        padding: 6px;
+
+        border-bottom: 1px solid #ddd;
 
     }
 
