@@ -274,3 +274,14 @@ function finishPayment() {
     alert("会計を保存しました。");
 
 }
+function toggleCategory(title){
+
+    const items = title.nextElementSibling;
+
+    items.classList.toggle("open");
+
+    title.textContent =
+        (items.classList.contains("open") ? "▼ " : "▶ ")
+        + title.textContent.substring(2);
+
+}
