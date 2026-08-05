@@ -548,3 +548,48 @@ label{
     }
 
 }
+.menu-category{
+
+    margin-top:20px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.category-title{
+
+    background:#f6f6f6;
+
+    padding:16px 20px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.category-items{
+
+    display:none;
+
+    padding:15px;
+
+}
+
+.category-items.open{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+
+    gap:15px;
+
+}
