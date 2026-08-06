@@ -194,6 +194,8 @@ function clearCart() {
     }
 
     cart = [];
+    
+    saleSaved = false;
 
     document.getElementById("patientName").value = "";
 
