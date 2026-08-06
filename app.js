@@ -408,7 +408,6 @@ function closeHistory(){
 ========================================== */
 
 function showSalesSummary() {
-alert("OK");
     document.getElementById("salesModal").style.display = "flex";
 
 }
