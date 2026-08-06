@@ -35,7 +35,7 @@ function addItem(name, price) {
 function removeItem(index) {
 
     cart.splice(index, 1);
-
+    saleSaved = false;
     updateCart();
 
 }
