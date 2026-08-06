@@ -416,7 +416,9 @@ label{
 
 .preview-button,
 .print-button,
-.clear-button{
+.clear-button,
+.history-button,
+.sales-button{
 
     flex:1;
 
