@@ -593,3 +593,196 @@ label{
     gap:15px;
 
 }
+/* ==========================================
+   会計履歴ウィンドウ
+========================================== */
+
+.history-modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.45);
+
+    z-index:9999;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.history-window{
+
+    width:min(900px,90vw);
+
+    max-height:85vh;
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.history-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 24px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    background:#fafafa;
+
+}
+
+.history-header h2{
+
+    margin:0;
+
+    font-size:22px;
+
+}
+
+.close-button{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f0f0f0;
+
+    cursor:pointer;
+
+    font-size:24px;
+
+}
+
+.close-button:hover{
+
+    background:#dddddd;
+
+}
+
+#historyList{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+/* 1件ごとのカード */
+
+.history-card{
+
+    border:1px solid #dddddd;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    background:#ffffff;
+
+}
+
+.history-date{
+
+    font-weight:bold;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
+}
+
+.history-patient{
+
+    margin-bottom:6px;
+
+}
+
+.history-payment{
+
+    margin-bottom:12px;
+
+    color:#666666;
+
+}
+
+.history-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:4px 0;
+
+}
+
+.history-total{
+
+    margin-top:12px;
+
+    padding-top:12px;
+
+    border-top:1px solid #dddddd;
+
+    text-align:right;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+/* 履歴ボタン */
+
+.history-button{
+
+    background:#6b7280;
+
+    color:#ffffff;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 22px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+.history-button:hover{
+
+    opacity:0.9;
+
+}
