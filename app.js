@@ -224,6 +224,7 @@ window.onload = function () {
 function saveSale() {
 
     if (cart.length === 0) return;
+    if (saleSaved) return;
 
     const patient =
         document.getElementById("patientName").value || "";
