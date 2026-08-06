@@ -252,6 +252,8 @@ function saveSale() {
         "annexSales",
         JSON.stringify(history)
     );
+// 保存済みにする
+saleSaved = true;
 
 }
 
