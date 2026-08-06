@@ -438,6 +438,30 @@ label{
 
 }
 
+.history-button{
+
+    background:#5d6d7e;
+
+}
+
+.history-button:hover{
+
+    opacity:.9;
+
+}
+
+.sales-button{
+
+    background:#4caf50;
+
+}
+
+.sales-button:hover{
+
+    opacity:.9;
+
+}
+
 .preview-button{
 
     background:#607d8b;
