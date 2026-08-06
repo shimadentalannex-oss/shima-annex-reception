@@ -286,3 +286,111 @@ function toggleCategory(title){
         + title.textContent.substring(2);
 
 }
+/* ==========================================
+   履歴表示
+========================================== */
+
+function showHistory() {
+
+    const history =
+        JSON.parse(localStorage.getItem("annexSales") || "[]");
+
+    const list =
+        document.getElementById("historyList");
+
+    list.innerHTML = "";
+
+    if (history.length === 0) {
+
+        list.innerHTML =
+
+            "<p>履歴はありません。</p>";
+
+    } else {
+
+        history.slice().reverse().forEach(sale => {
+
+            let itemsHtml = "";
+
+            sale.items.forEach(item => {
+
+                itemsHtml += `
+
+                <div class="history-item">
+
+                    <span>${item.name}</span>
+
+                    <span>¥${item.price.toLocaleString()}</span>
+
+                </div>
+
+                `;
+
+            });
+
+            const date = new Date(sale.datetime);
+
+            const dateText =
+                date.getFullYear() + "年" +
+                (date.getMonth() + 1) + "月" +
+                date.getDate() + "日 " +
+                date.getHours().toString().padStart(2,"0") + ":" +
+                date.getMinutes().toString().padStart(2,"0");
+
+            list.innerHTML += `
+
+            <div class="history-card">
+
+                <div class="history-date">
+
+                    ${dateText}
+
+                </div>
+
+                <div class="history-patient">
+
+                    <strong>患者名：</strong>
+
+                    ${sale.patient || "未入力"}
+
+                </div>
+
+                <div class="history-payment">
+
+                    <strong>支払：</strong>
+
+                    ${sale.payment}
+
+                </div>
+
+                ${itemsHtml}
+
+                <div class="history-total">
+
+                    合計　
+
+                    ¥${sale.total.toLocaleString()}
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    document.getElementById("historyModal").style.display = "flex";
+
+}
+
+/* ==========================================
+   履歴を閉じる
+========================================== */
+
+function closeHistory(){
+
+    document.getElementById("historyModal").style.display = "none";
+
+}
