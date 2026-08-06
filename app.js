@@ -403,3 +403,24 @@ function closeHistory(){
     document.getElementById("historyModal").style.display = "none";
 
 }
+/* ==========================================
+   売上集計
+========================================== */
+
+function showSalesSummary() {
+
+    document.getElementById("salesModal").style.display = "flex";
+
+}
+
+function closeSalesSummary() {
+
+    document.getElementById("salesModal").style.display = "none";
+
+}
+
+function printSalesSummary() {
+
+    window.print();
+
+}
