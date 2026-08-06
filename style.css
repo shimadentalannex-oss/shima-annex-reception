@@ -814,3 +814,156 @@ label{
     opacity:0.9;
 
 }
+/* ==========================================
+   売上集計モーダル
+========================================== */
+
+#salesSummary{
+
+    padding:20px;
+
+}
+
+.sales-title{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+}
+
+.sales-total{
+
+    background:#f8f5f2;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:25px;
+
+}
+
+.sales-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:1px solid #ececec;
+
+    font-size:20px;
+
+}
+
+.sales-row:last-child{
+
+    border-bottom:none;
+
+    font-weight:bold;
+
+    font-size:24px;
+
+    color:#8f6e52;
+
+}
+
+.sales-section{
+
+    margin-top:30px;
+
+}
+
+.sales-section h3{
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+    color:#555;
+
+}
+/* ==========================================
+   商品別集計
+========================================== */
+
+.sales-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    font-size:18px;
+
+}
+
+.sales-table th{
+
+    background:#8f6e52;
+
+    color:#fff;
+
+    padding:12px;
+
+    text-align:center;
+
+}
+
+.sales-table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #e5e5e5;
+
+}
+
+.sales-table tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+.sales-table td:nth-child(2),
+
+.sales-table td:nth-child(3){
+
+    text-align:right;
+
+}
+/* ==========================================
+   売上集計 印刷
+========================================== */
+
+@media print{
+
+    #salesModal{
+
+        position:static;
+
+        display:block !important;
+
+        background:white;
+
+    }
+
+    #salesModal .history-window{
+
+        width:100%;
+
+        max-width:100%;
+
+        box-shadow:none;
+
+        border-radius:0;
+
+    }
+
+}
