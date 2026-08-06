@@ -172,7 +172,8 @@ function selectPayment(method) {
 ========================================== */
 
 function printReceipt() {
-
+    
+　　　saveSale();
 
     window.print();
 
