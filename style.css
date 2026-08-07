@@ -499,83 +499,7 @@ label{
     opacity:.9;
 
 }
-/* ==========================================
-   印刷設定（A5領収書専用）
-========================================== */
-/* ==========================================
-   印刷（A5領収書のみ）
-========================================== */
 
-@media print {
-
-    @page {
-        size: A5 portrait;
-        margin: 6mm;
-    }
-
-    html,
-    body {
-
-        margin: 0;
-        padding: 0;
-
-        background: #fff;
-
-    }
-
-    /* 領収書以外を非表示 */
-
-    .header,
-    .card,
-    .button-area,
-    .payment-area {
-
-        display: none !important;
-
-    }
-
-    /* 領収書だけ表示 */
-
-    #receiptArea {
-
-        display: block !important;
-
-        width: 136mm;
-
-        min-height: auto;
-
-        margin: 0 auto;
-
-        padding: 8mm;
-
-        background: white;
-
-        box-shadow: none;
-
-        border: none;
-
-    }
-
-    /* テーブル */
-
-    .receipt-table {
-
-        width: 100%;
-
-        border-collapse: collapse;
-
-    }
-
-    .receipt-table th,
-    .receipt-table td {
-
-        padding: 6px;
-
-        border-bottom: 1px solid #ddd;
-
-    }
-
-}
 .menu-category{
 
     margin-top:20px;
@@ -939,12 +863,74 @@ label{
 
 }
 /* ==========================================
-   売上集計 印刷
+   印刷設定
 ========================================== */
 
 @media print{
 
-    #salesModal{
+    @page{
+        size:A5 portrait;
+        margin:6mm;
+    }
+
+    html,
+    body{
+
+        margin:0;
+        padding:0;
+        background:#fff;
+
+    }
+
+    /* ==========================
+       領収書印刷
+    ========================== */
+
+    body.print-receipt .header,
+    body.print-receipt .card,
+    body.print-receipt .button-area,
+    body.print-receipt .payment-area,
+    body.print-receipt #historyModal,
+    body.print-receipt #salesModal{
+
+        display:none !important;
+
+    }
+
+    body.print-receipt #receiptArea{
+
+        display:block !important;
+
+        width:136mm;
+
+        margin:0 auto;
+
+        padding:8mm;
+
+        background:#fff;
+
+        box-shadow:none;
+
+        border:none;
+
+    }
+
+    /* ==========================
+       売上印刷
+    ========================== */
+
+    body.print-sales .header,
+    body.print-sales .card,
+    body.print-sales .button-area,
+    body.print-sales .payment-area,
+    body.print-sales #receiptArea,
+    body.print-sales #historyModal{
+
+        display:none !important;
+
+    }
+
+    body.print-sales #salesModal{
 
         position:static;
 
@@ -954,7 +940,7 @@ label{
 
     }
 
-    #salesModal .history-window{
+    body.print-sales #salesModal .history-window{
 
         width:100%;
 
@@ -967,3 +953,4 @@ label{
     }
 
 }
+
