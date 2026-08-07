@@ -252,6 +252,7 @@ function saveSale() {
 
         total: cart.reduce((sum, item) => sum + item.price, 0)
 
+cancelled:false
     };
 
     const history =
