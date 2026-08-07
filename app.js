@@ -177,6 +177,13 @@ function selectPayment(method) {
 
 function printReceipt(){
 
+    if(cart.length === 0){
+        alert("商品を選択してください。");
+        return;
+    }
+
+    saveSale();
+
     document.body.classList.add("print-receipt");
 
     window.print();
