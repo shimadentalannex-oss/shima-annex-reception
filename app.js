@@ -175,11 +175,13 @@ function selectPayment(method) {
    印刷
 ========================================== */
 
-function printReceipt() {
-    
-　　　saveSale();
+function printReceipt(){
+
+    document.body.classList.add("print-receipt");
 
     window.print();
+
+    document.body.classList.remove("print-receipt");
 
 }
 
@@ -570,9 +572,13 @@ function closeSalesSummary() {
 
 }
 
-function printSalesSummary() {
+function printSalesSummary(){
+
+    document.body.classList.add("print-sales");
 
     window.print();
+
+    document.body.classList.remove("print-sales");
 
 }
 
