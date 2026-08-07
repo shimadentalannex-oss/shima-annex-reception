@@ -423,3 +423,4 @@ function printSalesSummary() {
     window.print();
 
 }
+
