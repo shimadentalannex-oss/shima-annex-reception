@@ -957,4 +957,26 @@ label{
     }
 
 }
+.cancel-button{
 
+    background:#d9534f;
+
+    color:#fff;
+
+    border:none;
+
+    padding:8px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.cancel-button:hover{
+
+    opacity:.9;
+
+}
