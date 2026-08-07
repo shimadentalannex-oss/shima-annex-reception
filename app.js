@@ -250,9 +250,9 @@ function saveSale() {
 
         items: [...cart],
 
-        total: cart.reduce((sum, item) => sum + item.price, 0)
+        total: cart.reduce((sum, item) => sum + item.price, 0),
 
-cancelled:false
+        cancelled: false
     };
 
     const history =
@@ -327,7 +327,9 @@ function showHistory() {
 
     } else {
 
-        history.slice().reverse().forEach(sale => {
+        history.slice().reverse().forEach((sale, reverseIndex) => {
+
+            const originalIndex = history.length - 1 - reverseIndex;
 
             let itemsHtml = "";
 
@@ -407,7 +409,7 @@ sale.cancelled
 
 `<button
 class="cancel-button"
-onclick="cancelSale(${history.length-1-index})">
+onclick="cancelSale(${originalIndex})">
 
 取消
 
@@ -450,6 +452,9 @@ function showSalesSummary() {
     const now = new Date();
 
     const thisMonth = history.filter(sale => {
+
+        // 取消済みの会計は売上集計から除外
+        if (sale.cancelled === true) return false;
 
         const d = new Date(sale.datetime);
 
@@ -629,6 +634,10 @@ function cancelSale(index){
     const history =
         JSON.parse(localStorage.getItem("annexSales")||"[]");
 
+    if (!history[index]) {
+        return;
+    }
+
     history[index].cancelled = true;
 
     localStorage.setItem(
@@ -642,3 +651,4 @@ function cancelSale(index){
     showHistory();
 
 }
+
