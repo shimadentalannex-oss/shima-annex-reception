@@ -614,4 +614,31 @@ function printSalesSummary(){
     document.body.classList.remove("print-sales");
 
 }
+/* ==========================================
+   会計取消
+========================================== */
 
+function cancelSale(index){
+
+    if(!confirm("この会計を取消しますか？")){
+
+        return;
+
+    }
+
+    const history =
+        JSON.parse(localStorage.getItem("annexSales")||"[]");
+
+    history[index].cancelled = true;
+
+    localStorage.setItem(
+
+        "annexSales",
+
+        JSON.stringify(history)
+
+    );
+
+    showHistory();
+
+}
