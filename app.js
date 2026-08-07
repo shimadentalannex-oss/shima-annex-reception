@@ -404,10 +404,162 @@ function closeHistory(){
 
 }
 /* ==========================================
-   売上集計
+   売上集計表示
 ========================================== */
 
 function showSalesSummary() {
+
+    const history =
+        JSON.parse(localStorage.getItem("annexSales") || "[]");
+
+    const now = new Date();
+
+    const thisMonth = history.filter(sale => {
+
+        const d = new Date(sale.datetime);
+
+        return (
+            d.getFullYear() === now.getFullYear() &&
+            d.getMonth() === now.getMonth()
+        );
+
+    });
+
+    let totalSales = 0;
+    let cardSales = 0;
+    let cashSales = 0;
+
+    const itemSummary = {};
+
+    thisMonth.forEach(sale => {
+
+        totalSales += sale.total;
+
+        if (sale.payment === "カード") {
+            cardSales += sale.total;
+        } else {
+            cashSales += sale.total;
+        }
+
+        sale.items.forEach(item => {
+
+            if (!itemSummary[item.name]) {
+
+                itemSummary[item.name] = {
+
+                    count: 0,
+                    total: 0
+
+                };
+
+            }
+
+            itemSummary[item.name].count++;
+
+            itemSummary[item.name].total += item.price;
+
+        });
+
+    });
+
+    let table = "";
+
+    Object.keys(itemSummary)
+        .sort()
+        .forEach(name => {
+
+            table += `
+
+<tr>
+
+<td>${name}</td>
+
+<td>${itemSummary[name].count}</td>
+
+<td>¥${itemSummary[name].total.toLocaleString()}</td>
+
+</tr>
+
+`;
+
+        });
+
+    document.getElementById("salesSummary").innerHTML = `
+
+<div class="sales-title">
+
+${now.getFullYear()}年${now.getMonth()+1}月 売上集計
+
+</div>
+
+<div class="sales-total">
+
+<div class="sales-row">
+
+<span>件数</span>
+
+<span>${thisMonth.length}件</span>
+
+</div>
+
+<div class="sales-row">
+
+<span>カード売上</span>
+
+<span>¥${cardSales.toLocaleString()}</span>
+
+</div>
+
+<div class="sales-row">
+
+<span>現金売上</span>
+
+<span>¥${cashSales.toLocaleString()}</span>
+
+</div>
+
+<div class="sales-row">
+
+<span>総売上</span>
+
+<span>¥${totalSales.toLocaleString()}</span>
+
+</div>
+
+</div>
+
+<div class="sales-section">
+
+<h3>商品別集計</h3>
+
+<table class="sales-table">
+
+<thead>
+
+<tr>
+
+<th>商品名</th>
+
+<th>件数</th>
+
+<th>売上</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${table}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
     document.getElementById("salesModal").style.display = "flex";
 
 }
