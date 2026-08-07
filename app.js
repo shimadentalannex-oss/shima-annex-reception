@@ -384,13 +384,38 @@ function showHistory() {
 
                 ${itemsHtml}
 
-                <div class="history-total">
+               <div class="history-total">
 
-                    合計　
+合計
 
-                    ¥${sale.total.toLocaleString()}
+¥${sale.total.toLocaleString()}
 
-                </div>
+</div>
+
+<div style="margin-top:15px;text-align:right;">
+
+${
+sale.cancelled
+
+?
+
+`<span style="color:red;font-weight:bold;">
+取消済
+</span>`
+
+:
+
+`<button
+class="cancel-button"
+onclick="cancelSale(${history.length-1-index})">
+
+取消
+
+</button>`
+
+}
+
+</div>
 
             </div>
 
