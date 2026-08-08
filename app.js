@@ -610,13 +610,21 @@ function closeSalesSummary() {
 
 }
 
-function printSalesSummary(){
+function printSalesSummary() {
 
     document.body.classList.add("print-sales");
 
-    window.print();
+    setTimeout(() => {
 
-    document.body.classList.remove("print-sales");
+        window.print();
+
+    }, 100);
+
+    window.onafterprint = function() {
+
+        document.body.classList.remove("print-sales");
+
+    };
 
 }
 /* ==========================================
