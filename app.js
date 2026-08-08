@@ -213,7 +213,7 @@ function clearCart() {
     document.getElementById("patientName").value = "";
 
     updateCart();
-
+updateMenuButtons();
 
 }
 
