@@ -17,7 +17,7 @@ let saleSaved = false;
    商品追加
 ========================================== */
 
-function addItem(name, price) {
+function addItem(name, price, button) {
 
     cart.push({
         name: name,
@@ -34,15 +34,52 @@ function addItem(name, price) {
 
     }
 
+}
+
 /* ==========================================
    商品削除
 ========================================== */
 
 function removeItem(index) {
 
+    const removedItem = cart[index];
+
     cart.splice(index, 1);
     saleSaved = false;
     updateCart();
+
+    // 同じ商品がカートに残っている場合は選択状態を維持
+    // すべて削除された場合のみ、その商品のボタンを解除
+    if (removedItem) {
+
+        const stillSelected = cart.some(item =>
+            item.name === removedItem.name &&
+            item.price === removedItem.price
+        );
+
+        if (!stillSelected) {
+
+            document.querySelectorAll(".menu-button").forEach(button => {
+
+                const onclickText = button.getAttribute("onclick") || "";
+
+                if (
+                    onclickText.includes(
+                        "addItem('" +
+                        removedItem.name.replace(/'/g, "\\'") +
+                        "'"
+                    )
+                ) {
+
+                    button.classList.remove("selected");
+
+                }
+
+            });
+
+        }
+
+    }
 
 }
 
