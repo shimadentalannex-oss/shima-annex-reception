@@ -215,7 +215,11 @@ function clearCart() {
     document.getElementById("patientName").value = "";
 
     updateCart();
-updateMenuButtons();
+document.querySelectorAll(".menu-button").forEach(button => {
+
+        button.classList.remove("selected");
+
+    });
 
 }
 
