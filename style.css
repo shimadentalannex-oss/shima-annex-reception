@@ -1053,3 +1053,19 @@ body.print-sales #salesModal button{
     color:#ffffff !important;
 
 }
+/* ==========================================
+   メニュー選択状態
+========================================== */
+
+.menu-button.selected {
+    background-color: #6f5743 !important;
+    color: #ffffff !important;
+    border-color: #6f5743 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.20);
+    transform: translateY(1px);
+}
+
+.menu-button.selected .menu-name,
+.menu-button.selected .menu-price {
+    color: #ffffff !important;
+}
