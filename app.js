@@ -23,8 +23,12 @@ function addItem(name, price) {
         name: name,
         price: price
     });
-　　saleSaved = false;
+
+    saleSaved = false;
+
     updateCart();
+
+    updateMenuButtons();
 
 }
 
