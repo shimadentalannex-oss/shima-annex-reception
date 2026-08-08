@@ -17,7 +17,7 @@ let saleSaved = false;
    商品追加
 ========================================== */
 
-function addItem(name, price, button) {
+function addItem(name, price) {
 
     cart.push({
         name: name,
@@ -27,12 +27,7 @@ function addItem(name, price, button) {
     saleSaved = false;
 
     updateCart();
-
-    if (button) {
-
-        button.classList.add("selected");
-
-    }
+    updateMenuButtons();
 
 }
 
@@ -42,45 +37,40 @@ function addItem(name, price, button) {
 
 function removeItem(index) {
 
-    const removedItem = cart[index];
-
     cart.splice(index, 1);
     saleSaved = false;
+
     updateCart();
+    updateMenuButtons();
 
-    // 同じ商品がカートに残っている場合は選択状態を維持
-    // すべて削除された場合のみ、その商品のボタンを解除
-    if (removedItem) {
+}
 
-        const stillSelected = cart.some(item =>
-            item.name === removedItem.name &&
-            item.price === removedItem.price
-        );
+/* ==========================================
+   メニュー選択状態更新
+   ※HTMLのonclickにbutton引数を追加する必要なし
+========================================== */
 
-        if (!stillSelected) {
+function updateMenuButtons() {
 
-            document.querySelectorAll(".menu-button").forEach(button => {
+    document.querySelectorAll(".menu-button").forEach(button => {
 
-                const onclickText = button.getAttribute("onclick") || "";
+        const onclickText = button.getAttribute("onclick") || "";
+        const match = onclickText.match(/addItem\(\s*'((?:\\'|[^'])*)'\s*,\s*(\d+(?:\.\d+)?)\s*\)/);
 
-                if (
-                    onclickText.includes(
-                        "addItem('" +
-                        removedItem.name.replace(/'/g, "\\'") +
-                        "'"
-                    )
-                ) {
-
-                    button.classList.remove("selected");
-
-                }
-
-            });
-
+        if (!match) {
+            button.classList.remove("selected");
+            return;
         }
 
-    }
+        const name = match[1].replace(/\\'/g, "'");
+        const price = Number(match[2]);
 
+        const selected = cart.some(item =>
+            item.name === name && item.price === price
+        );
+
+        button.classList.toggle("selected", selected);
+    });
 }
 
 /* ==========================================
@@ -267,6 +257,7 @@ document.querySelectorAll(".menu-button").forEach(button => {
 window.onload = function () {
 
     updateCart();
+    updateMenuButtons();
     
     selectPayment("カード");
     
