@@ -663,4 +663,39 @@ function cancelSale(index){
     showHistory();
 
 }
+/* ==========================================
+   メニュー選択状態
+========================================== */
+
+function updateMenuButtons() {
+
+    const buttons =
+        document.querySelectorAll(".menu-button");
+
+    buttons.forEach(button => {
+
+        const nameElement =
+            button.querySelector(".menu-name");
+
+        if (!nameElement) return;
+
+        const name =
+            nameElement.textContent.trim();
+
+        const selected =
+            cart.some(item => item.name === name);
+
+        if (selected) {
+
+            button.classList.add("selected");
+
+        } else {
+
+            button.classList.remove("selected");
+
+        }
+
+    });
+
+}
 
