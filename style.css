@@ -919,59 +919,107 @@ label{
 
     }
 
-    /* ==========================
-       売上印刷
-    ========================== */
+/* ==========================
+   売上印刷（全件印刷）
+========================== */
 
-    body.print-sales .header,
-    body.print-sales .card,
-    body.print-sales .button-area,
-    body.print-sales .payment-area,
-    body.print-sales #receiptArea,
-    body.print-sales #historyModal{
+/* 通常画面を非表示 */
 
-        display:none !important;
+body.print-sales .header,
+body.print-sales .card,
+body.print-sales .button-area,
+body.print-sales .payment-area,
+body.print-sales #receiptArea,
+body.print-sales #historyModal{
 
-    }
-
-    body.print-sales #salesModal{
-
-        position:static;
-
-        display:block !important;
-
-        background:white;
-
-    }
-
-    body.print-sales #salesModal .history-window{
-
-        width:100%;
-
-        max-width:100%;
-
-        box-shadow:none;
-
-        border-radius:0;
-
-    }
+    display:none !important;
 
 }
-.cancel-button{
 
-    background:#d9534f;
 
-    color:#fff;
+/* 売上集計だけ表示 */
 
-    border:none;
+body.print-sales #salesModal{
 
-    padding:8px 16px;
+    position:static !important;
 
-    border-radius:8px;
+    display:block !important;
 
-    cursor:pointer;
+    width:100% !important;
 
-    font-weight:bold;
+    height:auto !important;
+
+    max-height:none !important;
+
+    overflow:visible !important;
+
+    background:#fff !important;
+
+}
+
+
+/* 売上集計ウィンドウ */
+
+body.print-sales #salesModal .history-window{
+
+    width:100% !important;
+
+    max-width:none !important;
+
+    height:auto !important;
+
+    max-height:none !important;
+
+    overflow:visible !important;
+
+    box-shadow:none !important;
+
+    border-radius:0 !important;
+
+}
+
+
+/* 売上集計の中身 */
+
+body.print-sales #salesSummary{
+
+    display:block !important;
+
+    height:auto !important;
+
+    max-height:none !important;
+
+    overflow:visible !important;
+
+}
+
+
+/* 売上集計のヘッダー */
+
+body.print-sales #salesModal .history-header{
+
+    background:#fff !important;
+
+}
+
+
+/* 閉じるボタン・印刷ボタンは印刷しない */
+
+body.print-sales #salesModal .close-button,
+body.print-sales #salesModal button{
+
+    display:none !important;
+
+}
+
+
+/* 売上集計はA4で印刷 */
+
+@page{
+
+    size:A4 portrait;
+
+    margin:12mm;
 
 }
 
