@@ -59,28 +59,86 @@ function updateMenuButtons() {
 
     document.querySelectorAll(".menu-button").forEach(button => {
 
-        const onclickText = button.getAttribute("onclick") || "";
+        const onclickText =
+            button.getAttribute("onclick") || "";
 
-        // addItem('商品名', 価格) と
-        // addItem('商品名', 価格, this) の両方に対応
+        /*
+        HTMLの
+        addItem('商品名',価格)
+        addItem('商品名',価格,this)
+
+        の両方に対応
+        */
+
         const match = onclickText.match(
-            /addItem\(\s*'([^']*)'\s*,\s*(\d+(?:\.\d+)?)(?:\s*,\s*[^)]*)?\s*\)/
+            /addItem\(\s*'((?:\\'|[^'])*)'\s*,\s*(\d+(?:\.\d+)?)/
         );
 
-        if (!match) {
-            button.classList.remove("selected");
-            return;
+        if (!match) return;
+
+        const name =
+            match[1].replace(/\\'/g, "'");
+
+        const price =
+            Number(match[2]);
+
+        /*
+        現在カートに入っている
+        同じ商品の数量を数える
+        */
+
+        const count = cart.filter(item =>
+
+            item.name === name &&
+            item.price === price
+
+        ).length;
+
+        /*
+        以前作った選択表示を削除
+        */
+
+        const oldBadge =
+            button.querySelector(".selected-badge");
+
+        if (oldBadge) {
+
+            oldBadge.remove();
+
         }
 
-        const name = match[1];
-        const price = Number(match[2]);
+        /*
+        選択されている場合
+        「✓ 選択済み ×数量」を追加
+        */
 
-        const selected = cart.some(item =>
-            item.name === name && item.price === price
-        );
+        if (count > 0) {
 
-        button.classList.toggle("selected", selected);
+            const badge =
+                document.createElement("span");
+
+            badge.className =
+                "selected-badge";
+
+            badge.textContent =
+                "✓ 選択済み ×" + count;
+
+            button.appendChild(badge);
+
+            /*
+            selectedクラスも一応維持
+            */
+
+            button.classList.add("selected");
+
+        } else {
+
+            button.classList.remove("selected");
+
+        }
+
     });
+
 }
 
 /* ==========================================
