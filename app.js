@@ -208,27 +208,66 @@ function updateCart() {
 
         `;
 
-        receiptArea.innerHTML += `
-
-        <tr>
-
-            <td>
-
-                ${item.name}
-
-            </td>
-
-            <td style="text-align:right">
-
-                ¥${item.price.toLocaleString()}
-
-            </td>
-
-        </tr>
-
-        `;
 
     });
+    /* ==========================================
+   領収書用：同じ商品をまとめる
+========================================== */
+
+const receiptItems = {};
+
+cart.forEach(item => {
+
+    const key =
+        item.name + "___" + item.price;
+
+    if (!receiptItems[key]) {
+
+        receiptItems[key] = {
+
+            name: item.name,
+
+            price: item.price,
+
+            count: 0
+
+        };
+
+    }
+
+    receiptItems[key].count++;
+
+});
+
+Object.values(receiptItems).forEach(item => {
+
+    const subtotal =
+        item.price * item.count;
+
+    receiptArea.innerHTML += `
+
+    <tr>
+
+        <td>
+
+            ${item.name}
+            <span style="margin-left:8px;">
+                ¥${item.price.toLocaleString()} × ${item.count}
+            </span>
+
+        </td>
+
+        <td style="text-align:right">
+
+            ¥${subtotal.toLocaleString()}
+
+        </td>
+
+    </tr>
+
+    `;
+
+});
 
     totalArea.textContent =
         "¥" + total.toLocaleString();
