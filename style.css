@@ -1045,3 +1045,36 @@ body.print-sales #salesModal button{
 .menu-button {
     -webkit-tap-highlight-color:transparent;
 }
+/* ==========================================
+   メニュー選択表示
+========================================== */
+
+.menu-button{
+
+    position:relative;
+
+}
+
+.selected-badge{
+
+    display:block;
+
+    margin-top:10px;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    background:#6f5743;
+
+    color:#ffffff !important;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    letter-spacing:0.03em;
+
+}
