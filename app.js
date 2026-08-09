@@ -17,7 +17,7 @@ let saleSaved = false;
    商品追加
 ========================================== */
 
-function addItem(name, price) {
+function addItem(name, price, button) {
 
     cart.push({
         name: name,
@@ -28,6 +28,11 @@ function addItem(name, price) {
 
     updateCart();
     updateMenuButtons();
+
+    // HTML側で addItem('商品名', 金額, this) の形になっている場合にも対応
+    if (button && button.classList) {
+        button.classList.add("selected");
+    }
 
 }
 
@@ -55,14 +60,19 @@ function updateMenuButtons() {
     document.querySelectorAll(".menu-button").forEach(button => {
 
         const onclickText = button.getAttribute("onclick") || "";
-        const match = onclickText.match(/addItem\(\s*'((?:\\'|[^'])*)'\s*,\s*(\d+(?:\.\d+)?)\s*\)/);
+
+        // addItem('商品名', 価格) と
+        // addItem('商品名', 価格, this) の両方に対応
+        const match = onclickText.match(
+            /addItem\(\s*'([^']*)'\s*,\s*(\d+(?:\.\d+)?)(?:\s*,\s*[^)]*)?\s*\)/
+        );
 
         if (!match) {
             button.classList.remove("selected");
             return;
         }
 
-        const name = match[1].replace(/\\'/g, "'");
+        const name = match[1];
         const price = Number(match[2]);
 
         const selected = cart.some(item =>
@@ -219,9 +229,13 @@ function printReceipt(){
 
     document.body.classList.add("print-receipt");
 
-    window.print();
+    // 印刷ダイアログが閉じた後にだけ通常画面へ戻す
+    window.onafterprint = function(){
+        document.body.classList.remove("print-receipt");
+        window.onafterprint = null;
+    };
 
-    document.body.classList.remove("print-receipt");
+    window.print();
 
 }
 
@@ -242,11 +256,7 @@ function clearCart() {
     document.getElementById("patientName").value = "";
 
     updateCart();
-document.querySelectorAll(".menu-button").forEach(button => {
-
-        button.classList.remove("selected");
-
-    });
+    updateMenuButtons();
 
 }
 
