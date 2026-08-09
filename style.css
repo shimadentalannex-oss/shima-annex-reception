@@ -1013,15 +1013,8 @@ body.print-sales #salesModal button{
 }
 
 
-/* 売上集計はA4で印刷 */
-
-@page{
-
-    size:A4 portrait;
-
-    margin:12mm;
-
-}
+/* 売上集計も印刷対象を限定する。
+   @page は領収書・売上で共通のため、ここでA4に上書きしない */
 
 .cancel-button:hover{
 
