@@ -589,26 +589,70 @@ function closeHistory(){
    売上集計表示
 ========================================== */
 
-function showSalesSummary() {
+function getSaleMonthKey(datetime) {
+    const d = new Date(datetime);
+
+    return d.getFullYear() + "-" +
+        String(d.getMonth() + 1).padStart(2, "0");
+}
+
+
+function formatSalesMonth(monthKey) {
+    const parts = monthKey.split("-");
+
+    return parts[0] + "年" + Number(parts[1]) + "月";
+}
+
+
+function getAvailableSalesMonths() {
 
     const history =
         JSON.parse(localStorage.getItem("annexSales") || "[]");
 
-    const now = new Date();
+    const months = history.map(sale => {
+        return getSaleMonthKey(sale.datetime);
+    });
 
+    // 重複を削除して、新しい月から並べる
+    return [...new Set(months)].sort().reverse();
+}
+
+
+function showSalesSummary(selectedMonth) {
+
+    const history =
+        JSON.parse(localStorage.getItem("annexSales") || "[]");
+
+    let months = getAvailableSalesMonths();
+
+    // 売上履歴がまだない場合は今月を表示
+    if (months.length === 0) {
+
+        const now = new Date();
+
+        selectedMonth =
+            now.getFullYear() + "-" +
+            String(now.getMonth() + 1).padStart(2, "0");
+
+        months = [selectedMonth];
+
+    } else if (!selectedMonth) {
+
+        // 初回表示は一番新しい月
+        selectedMonth = months[0];
+
+    }
+
+
+    // 選択された月の売上だけ抽出
     const thisMonth = history.filter(sale => {
 
-        // 取消済みの会計は売上集計から除外
         if (sale.cancelled === true) return false;
 
-        const d = new Date(sale.datetime);
-
-        return (
-            d.getFullYear() === now.getFullYear() &&
-            d.getMonth() === now.getMonth()
-        );
+        return getSaleMonthKey(sale.datetime) === selectedMonth;
 
     });
+
 
     let totalSales = 0;
     let cardSales = 0;
@@ -616,136 +660,167 @@ function showSalesSummary() {
 
     const itemSummary = {};
 
+
     thisMonth.forEach(sale => {
 
         totalSales += sale.total;
 
         if (sale.payment === "カード") {
+
             cardSales += sale.total;
+
         } else {
+
             cashSales += sale.total;
+
         }
+
 
         sale.items.forEach(item => {
 
             if (!itemSummary[item.name]) {
 
                 itemSummary[item.name] = {
-
                     count: 0,
                     total: 0
-
                 };
 
             }
 
             itemSummary[item.name].count++;
-
             itemSummary[item.name].total += item.price;
 
         });
 
     });
 
-    let table = "";
 
-    Object.keys(itemSummary)
-        .sort()
-        .forEach(name => {
+    // 月選択プルダウン
+    let monthOptions = "";
 
-            table += `
+    months.forEach(month => {
 
-<tr>
+        monthOptions += `
+            <option value="${month}"
+                ${month === selectedMonth ? "selected" : ""}>
+                ${formatSalesMonth(month)}
+            </option>
+        `;
 
-<td>${name}</td>
+    });
 
-<td>${itemSummary[name].count}</td>
 
-<td>¥${itemSummary[name].total.toLocaleString()}</td>
+    // 商品集計
+    let itemRows = "";
 
-</tr>
+    Object.keys(itemSummary).forEach(name => {
 
-`;
+        const item = itemSummary[name];
 
-        });
+        itemRows += `
+            <tr>
+                <td>${name}</td>
+                <td>${item.count}</td>
+                <td>¥${item.total.toLocaleString()}</td>
+            </tr>
+        `;
+
+    });
+
+
+    if (itemRows === "") {
+
+        itemRows = `
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    この月の売上はありません。
+                </td>
+            </tr>
+        `;
+
+    }
+
 
     document.getElementById("salesSummary").innerHTML = `
 
-<div class="sales-title">
+        <div class="sales-month-selector">
 
-${now.getFullYear()}年${now.getMonth()+1}月 売上集計
+            <label for="salesMonthSelect">
+                集計月
+            </label>
 
-</div>
+            <select
+                id="salesMonthSelect"
+                onchange="changeSalesMonth(this.value)">
 
-<div class="sales-total">
+                ${monthOptions}
 
-<div class="sales-row">
+            </select>
 
-<span>件数</span>
+        </div>
 
-<span>${thisMonth.length}件</span>
 
-</div>
+        <div class="sales-title">
+            ${formatSalesMonth(selectedMonth)} 売上集計
+        </div>
 
-<div class="sales-row">
 
-<span>カード売上</span>
+        <div class="sales-total">
+            ¥${totalSales.toLocaleString()}
+        </div>
 
-<span>¥${cardSales.toLocaleString()}</span>
 
-</div>
+        <div class="sales-section">
 
-<div class="sales-row">
+            <div class="sales-row">
+                <span>会計件数</span>
+                <strong>${thisMonth.length}件</strong>
+            </div>
 
-<span>現金売上</span>
+            <div class="sales-row">
+                <span>カード</span>
+                <strong>¥${cardSales.toLocaleString()}</strong>
+            </div>
 
-<span>¥${cashSales.toLocaleString()}</span>
+            <div class="sales-row">
+                <span>現金</span>
+                <strong>¥${cashSales.toLocaleString()}</strong>
+            </div>
 
-</div>
+        </div>
 
-<div class="sales-row">
 
-<span>総売上</span>
+        <div class="sales-section">
 
-<span>¥${totalSales.toLocaleString()}</span>
+            <h3>商品別集計</h3>
 
-</div>
+            <table class="sales-table">
 
-</div>
+                <thead>
+                    <tr>
+                        <th>商品名</th>
+                        <th>数量</th>
+                        <th>売上</th>
+                    </tr>
+                </thead>
 
-<div class="sales-section">
+                <tbody>
+                    ${itemRows}
+                </tbody>
 
-<h3>商品別集計</h3>
+            </table>
 
-<table class="sales-table">
+        </div>
 
-<thead>
+    `;
 
-<tr>
-
-<th>商品名</th>
-
-<th>件数</th>
-
-<th>売上</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${table}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
 
     document.getElementById("salesModal").style.display = "flex";
+}
+
+function changeSalesMonth(monthKey) {
+
+    showSalesSummary(monthKey);
 
 }
 
