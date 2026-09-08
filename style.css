@@ -1007,7 +1007,8 @@ body.print-sales #salesModal .history-header{
 
 body.print-sales #salesModal .close-button,
 body.print-sales #salesModal button{
-
+body.print-sales #salesModal .sales-month-selector {
+    
     display:none !important;
 
 }
@@ -1077,4 +1078,38 @@ body.print-sales #salesModal button{
 
     letter-spacing:0.03em;
 
+}
+
+/* ==========================
+   売上集計 月選択
+========================== */
+
+.sales-month-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 0 20px 20px;
+    padding: 14px 16px;
+
+    background: #f8f5f2;
+    border-radius: 12px;
+}
+
+.sales-month-selector label {
+    font-weight: bold;
+    color: #555;
+}
+
+.sales-month-selector select {
+    padding: 8px 34px 8px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    background: #fff;
+
+    font-size: 15px;
+    color: #333;
 }
